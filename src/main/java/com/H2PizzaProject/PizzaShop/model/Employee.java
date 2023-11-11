@@ -1,9 +1,16 @@
 package com.H2PizzaProject.PizzaShop.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-import org.springframework.data.annotation.Id;
-
+@Entity
+@Data
 public class Employee {
-    private @Id int employee_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int employee_id;
     private String name;
     private String employee_status;
     private String employee_role;
@@ -13,6 +20,12 @@ public class Employee {
         this.employee_id = employee_id;
         this.name = name;
         this.employee_status = employee_status;
+        this.employee_role = employee_role;
+    }
+
+    public Employee(Integer o, String name, String employeeStatus, String employee_role) {
+        this.name = name;
+        this.employee_status = employeeStatus;
         this.employee_role = employee_role;
     }
 

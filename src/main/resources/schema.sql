@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS employee (employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL,
-employee_role VARCHAR(255) DEFAULT 'normal' NOT NULL, employee_status BOOLEAN);
+employee_role VARCHAR(255) DEFAULT 'normal' NOT NULL, employee_status VARCHAR(255));
 
 CREATE TABLE IF NOT EXISTS customer (customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, street_address VARCHAR(255) NOT NULL,
 zip_code VARCHAR(255) NOT NULL);
