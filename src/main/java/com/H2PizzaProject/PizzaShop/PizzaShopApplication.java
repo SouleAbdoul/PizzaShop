@@ -17,6 +17,10 @@ public class PizzaShopApplication {
 
 		SpringApplication.run(PizzaShopApplication.class, args);
 	}
+
+	// This code below create the first employee as you run the application
+	// but that do not need to be there as all the endpoints are working properly
+	// therefore can be commented if needed the first employee would need to be created through postman.
     @Bean
 	CommandLineRunner commandLineRunner(EmployeeRepository repository){
 		return args -> {
