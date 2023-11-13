@@ -1,15 +1,14 @@
 package com.H2PizzaProject.PizzaShop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Id;
+
 @Entity
 @Data
 public class Customer {
 
         @Id
+        @Column(name="phone_number",columnDefinition = "VARCHAR(255)")
         private int phone_number;
         private String name;
         private String street_address;
@@ -28,8 +27,8 @@ public class Customer {
             return phone_number;
         }
 
-        public void setPhone_number(int id) {
-            phone_number = id;
+        public void setPhone_number(int phone_number) {
+            this.phone_number = phone_number;
         }
 
         public String getName() {
@@ -44,16 +43,16 @@ public class Customer {
             return street_address;
         }
 
-        public void setStreetAddress(String address) {
-            this.street_address = address;
+        public void setStreetAddress(String street_address) {
+            this.street_address = street_address;
         }
 
         public String getZipCode() {
             return zip_code;
         }
 
-        public void setZipCode(String zipcode) {
-            this.zip_code = zipcode;
+        public void setZipCode(String zip_code) {
+            this.zip_code = zip_code;
         }
 
         @Override
