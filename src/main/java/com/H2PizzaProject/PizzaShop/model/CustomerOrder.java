@@ -1,8 +1,10 @@
 package com.H2PizzaProject.PizzaShop.model;
-
-import jakarta.persistence.Entity;
+import java.util.Date;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -10,23 +12,37 @@ import java.util.List;
 @Data
 public class CustomerOrder {
         @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         private int order_id;
+        @ManyToOne
         private Customer customer;
+
+        @ManyToOne
         private Employee employee;
-        private boolean complete;
-        private Date date;
-        private Time time;
+        private boolean order_status;
+
+         public Date getCreatedAt() {
+             return createdAt;
+            }
+
+        public void setCreatedAt(Date createdAt) {
+            this.createdAt = createdAt;
+        }
+
+        @Temporal(TemporalType.TIMESTAMP)
+        @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+        private Date createdAt;
+        @OneToMany
         private List<OrderDetail> details;
 
         public CustomerOrder(){}
 
-        public CustomerOrder(int order_id, Customer customer, Employee employee, String date, String time){
+        public CustomerOrder(int order_id, Customer customer, Employee employee,Date newDate){
             this.order_id = order_id;
             this.customer = customer;
             this.employee = employee;
-            this.date = new Date(date);
-            this.time = new Time(time);
-            complete = false;
+            this.order_status = false;
+            this.createdAt = newDate;
         }
 
         public int getOrder_id() {
@@ -62,28 +78,14 @@ public class CustomerOrder {
         }
 
         public boolean isComplete() {
-            return complete;
+            return this.order_status;
         }
 
-        public void setComplete(boolean complete) {
-            this.complete = complete;
+        public void setComplete(boolean order_status) {
+            this.order_status = order_status;
         }
 
-        public Date getDate() {
-            return date;
-        }
 
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public Time getTime() {
-            return time;
-        }
-
-        public void setTime(Time time) {
-            this.time = time;
-        }
 
         @Override
         public String toString() {
@@ -91,9 +93,9 @@ public class CustomerOrder {
                     "order_id=" + order_id +
                     ", customer='" + customer.getName() + '\'' +
                     ", employee_id='" + employee.getEmployee_id() + '\'' +
-                    ", complete=" + complete +
-                    ", date=" + date +
-                    ", time=" + time +
+                    ", order_status=" + order_status +
+                    ", date=" + //date +
+                    ", time=" + //time +
                     ", details=" + details +
                     '}';
         }

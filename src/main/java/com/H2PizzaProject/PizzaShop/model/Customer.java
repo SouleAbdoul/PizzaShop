@@ -1,8 +1,10 @@
 package com.H2PizzaProject.PizzaShop.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 @Entity
 @Data
 public class Customer {
@@ -10,16 +12,16 @@ public class Customer {
         @Id
         private int phone_number;
         private String name;
-        private String streetAddress;
-        private String zipCode;
+        private String street_address;
+        private String zip_code;
 
         public Customer(){}
 
-        public Customer(int customer_id, String name, String streetAddress, String zipCode) {
+        public Customer(int customer_id, String name, String street_address, String zip_code) {
             this.phone_number = customer_id;
             this.name = name;
-            this.streetAddress = streetAddress;
-            this.zipCode = zipCode;
+            this.street_address = street_address;
+            this.zip_code = zip_code;
         }
 
         public int getPhone_number() {
@@ -39,27 +41,27 @@ public class Customer {
         }
 
         public String getStreetAddress() {
-            return streetAddress;
+            return street_address;
         }
 
         public void setStreetAddress(String address) {
-            this.streetAddress = address;
+            this.street_address = address;
         }
 
         public String getZipCode() {
-            return zipCode;
+            return zip_code;
         }
 
-        public void setZipCode(String zip) {
-            this.zipCode = zip;
+        public void setZipCode(String zipcode) {
+            this.zip_code = zipcode;
         }
 
         @Override
         public String toString() {
             return "Customer{" +
                     "name='" + name + '\'' +
-                    ", address='" + streetAddress + '\'' +
-                    ", zip='" + zipCode + '\'' + '}';
+                    ", address='" + street_address + '\'' +
+                    ", zip='" + zip_code + '\'' + '}';
         }
     }
 
