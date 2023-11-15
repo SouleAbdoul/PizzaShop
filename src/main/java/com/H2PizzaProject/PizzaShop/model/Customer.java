@@ -12,12 +12,13 @@ public class Customer {
         private int phone_number;
         private String name;
         private String street_address;
+         @Column(unique = true)
         private String zip_code;
 
         public Customer(){}
 
-        public Customer(int customer_id, String name, String street_address, String zip_code) {
-            this.phone_number = customer_id;
+        public Customer(int phone_number, String name, String street_address, String zip_code) {
+            this.phone_number = phone_number;
             this.name = name;
             this.street_address = street_address;
             this.zip_code = zip_code;

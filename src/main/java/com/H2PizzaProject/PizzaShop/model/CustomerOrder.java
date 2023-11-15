@@ -14,7 +14,7 @@ public class CustomerOrder {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private int order_id;
-        @ManyToOne
+        @OneToOne
         private Customer customer;
 
         @ManyToOne

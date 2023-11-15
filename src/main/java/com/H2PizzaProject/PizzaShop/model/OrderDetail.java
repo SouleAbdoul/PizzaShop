@@ -1,9 +1,7 @@
 package com.H2PizzaProject.PizzaShop.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Id;
+
 @Entity
 @Data
 public class OrderDetail {
@@ -12,6 +10,7 @@ public class OrderDetail {
         private int detail_id;
         private double priceCharged;
         private int quantity;
+        @OneToOne
         private Product product;
 
         public OrderDetail(){}
