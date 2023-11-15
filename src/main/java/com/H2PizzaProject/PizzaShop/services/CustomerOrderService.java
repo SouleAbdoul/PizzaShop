@@ -21,14 +21,14 @@ public class CustomerOrderService {
     }
 
     // create a customer
-    public String createCustomerOrder(CustomerOrder customerOrder){
-        customerOrderRepository.save(customerOrder);
-        return "Customer Order added.";
+    public CustomerOrder createCustomerOrder(CustomerOrder customerOrder){
+        return customerOrderRepository.save(customerOrder);
+
     }
 
     // find a customer by id
 
-    public CustomerOrder findCustomer(int id){
+    public CustomerOrder findCustomerOrder(int id){
         return  customerOrderRepository.findById(id).orElse(null);
     }
 

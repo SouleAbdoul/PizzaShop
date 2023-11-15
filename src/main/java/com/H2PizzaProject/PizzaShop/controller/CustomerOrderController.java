@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class CustomerOrderController {
@@ -16,35 +16,34 @@ public class CustomerOrderController {
 
     // EndPoint to get all employees
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/employees")
-    public Iterable<CustomerOrderService> getAllEmployee() {
+    @GetMapping("/customerOrder")
+    public Iterable<CustomerOrder> getAllCustomerOrder() {
         return customerOrderService.getAllCustomerOrder();
     }
 
     // EndPoint to add a new employee
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/addOrderService")
-    public CustomerOrderService addEmployee(@RequestBody CustomerOrderService employee){
-        return customerOrderService.createCustomerOrder(employee);
+    @PostMapping("/addCustomerOrder")
+    public CustomerOrder addEmployee(@RequestBody CustomerOrder customerOrder){
+        return customerOrderService.createCustomerOrder(customerOrder);
     }
 
 
     // EndPoint to update an employee
     @ResponseStatus(HttpStatus.RESET_CONTENT)
-    @PutMapping("/updateEmployee")
-    public CustomerOrderService updateEmployee(@RequestBody CustomerOrderService employee){
-        return customerOrderService.updateEmployee(employee);
+    @PutMapping("/updateCustomerOrder")
+    public CustomerOrder updateEmployee(@RequestBody CustomerOrder customerOrder){
+        return customerOrderService.updateCustomerOrder(customerOrder);
     }
 
 
 
     // EndPoint to delete employee
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/deleteEmployee/{id}")
+    @DeleteMapping("/deleteCustomerOrder/{id}")
     public String deleteEmployee(@PathVariable int id){
-        return customerOrderService.deleteEmployee(id);
+        return customerOrderService.deleteCustomerOrder(id);
     }
 
 }
 
-}
