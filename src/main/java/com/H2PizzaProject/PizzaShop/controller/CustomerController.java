@@ -27,8 +27,6 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addCustomer")
     public String addCustomer(@RequestBody Customer customer){
-
-        System.out.println(customer.toString());
        return customerService.createCustomer(customer);
     }
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
@@ -35,8 +35,6 @@ public class EmployeeController {
     public Employee updateEmployee(@RequestBody Employee employee){
         return employeeService.updateEmployee(employee);
     }
-
-
 
     // EndPoint to delete employee
     @ResponseStatus(HttpStatus.OK)
