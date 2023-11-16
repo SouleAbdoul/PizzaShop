@@ -23,7 +23,7 @@ public class CustomerOrderController {
 
     // EndPoint to add a new employee
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/addOrder")
+    @PostMapping("/addCustomerOrder")
     public CustomerOrder addEmployee(@RequestBody CustomerOrder customerOrder){
         return customerOrderService.createCustomerOrder(customerOrder);
     }
