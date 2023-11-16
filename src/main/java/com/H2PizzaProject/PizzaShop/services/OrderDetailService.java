@@ -44,10 +44,10 @@ public class OrderDetailService {
         OrderDetail oldOrder = null;
         if(optionalOrder.isPresent()){
             oldOrder = optionalOrder.get();
-            oldOrder.setDetail_id(order.getDetail_id());
-            oldOrder.setProduct(order.getProduct());
+            oldOrder.setProduct_ids(order.getProduct_ids());
             oldOrder.setQuantity(order.getQuantity());
             oldOrder.setPriceCharged(order.getPriceCharged());
+            orderdetailRepository.save(oldOrder);
         }else{
             return new OrderDetail();
         }

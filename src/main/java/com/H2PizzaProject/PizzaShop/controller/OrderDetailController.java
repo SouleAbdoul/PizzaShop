@@ -38,9 +38,8 @@ public class OrderDetailController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @GetMapping("/getOrder/{id}")
-    public String findOrder(@PathVariable int id){
-        orderdetailService.findOrder(id);
-        return "Found";
+    public OrderDetail findOrder(@PathVariable int id){
+        return orderdetailService.findOrder(id);
     }
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/deleteOrder/{id}")

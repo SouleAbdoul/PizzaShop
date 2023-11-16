@@ -1,6 +1,9 @@
 package com.H2PizzaProject.PizzaShop.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.relational.core.sql.In;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -9,18 +12,17 @@ public class OrderDetail {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private int detail_id;
-        private double priceCharged;
+        private double price_charged;
         private int quantity;
-        @OneToOne
-        private Product product;
+        private List<Integer> product_ids;
 
         public OrderDetail(){}
 
-        public OrderDetail(int detail_id, double priceCharged, int quantity, Product product) {
+        public OrderDetail(int detail_id, double price_charged, int quantity, List<Integer> product_ids) {
             this.detail_id = detail_id;
-            this.priceCharged = priceCharged;
+            this.price_charged = price_charged;
             this.quantity = quantity;
-            this.product = product;
+            this.product_ids = product_ids;
         }
 
         public int getDetail_id() {
@@ -32,11 +34,11 @@ public class OrderDetail {
         }
 
         public double getPriceCharged() {
-            return priceCharged;
+            return price_charged;
         }
 
-        public void setPriceCharged(double priceCharged) {
-            this.priceCharged = priceCharged;
+        public void setPriceCharged(double price_charged) {
+            this.price_charged = price_charged;
         }
 
         public int getQuantity() {
@@ -47,21 +49,21 @@ public class OrderDetail {
             this.quantity = quantity;
         }
 
-        public Product getProduct() {
-            return product;
-        }
+    public List<Integer> getProduct_ids() {
+        return product_ids;
+    }
 
-        public void setProduct(Product product) {
-            this.product = product;
-        }
+    public void setProduct_ids(List<Integer> product_ids) {
+        this.product_ids = product_ids;
+    }
 
-        @Override
+    @Override
         public String toString() {
             return "OrderDetail{" +
                     "detail_id=" + detail_id +
-                    ", priceCharged=" + priceCharged +
+                    ", priceCharged=" + price_charged +
                     ", quantity=" + quantity +
-                    ", product=" + product +
+                    ", product=" + product_ids+
                     '}';
         }
     }
