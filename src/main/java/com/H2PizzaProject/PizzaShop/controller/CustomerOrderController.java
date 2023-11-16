@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class CustomerOrderController {
@@ -23,7 +23,7 @@ public class CustomerOrderController {
 
     // EndPoint to add a new employee
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/addCustomerOrder")
+    @PostMapping("/addOrder")
     public CustomerOrder addEmployee(@RequestBody CustomerOrder customerOrder){
         return customerOrderService.createCustomerOrder(customerOrder);
     }
