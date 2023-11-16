@@ -18,7 +18,7 @@ public class Product {
     private  String size;
     Product(){};
 
-    Product(int product_id, String name, double price, String size) {
+    public Product(int product_id, String name, double price, String size) {
         this.product_id = product_id;
         this.name = name;
         this.price = price;
