@@ -15,6 +15,7 @@ public class CustomerOrderController {
     CustomerOrderService customerOrderService;
 
     // EndPoint to get all employees
+    // added other endpoints
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/customerOrder")
     public Iterable<CustomerOrder> getAllCustomerOrder() {

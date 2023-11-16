@@ -41,6 +41,7 @@ public class EmployeeService {
         if(optionalEmployee.isPresent()){
              oldEmployee = optionalEmployee.get();
             oldEmployee.setName(employee.getName());
+            oldEmployee.setEmployee_role(employee.getEmployee_role());
             oldEmployee.setEmployee_status(employee.getEmployee_status());
             employeeRepository.save(oldEmployee);
         }else{
