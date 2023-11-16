@@ -8,5 +8,4 @@ import org.springframework.data.repository.CrudRepository;
 public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
     // All the basic methods(save, findAll, findById, and deleteByid) comes from CrudRepository
     // and are injected Through EmployeeRepository
-
 }

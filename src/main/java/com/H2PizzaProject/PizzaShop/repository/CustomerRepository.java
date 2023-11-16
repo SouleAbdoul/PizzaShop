@@ -4,6 +4,6 @@ import com.H2PizzaProject.PizzaShop.model.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 // This is the customer repository interface
-public interface CustomerRepository extends CrudRepository<Customer,Integer> {
+public interface CustomerRepository extends CrudRepository<Customer,Long> {
    // add custom code here if needed
 }

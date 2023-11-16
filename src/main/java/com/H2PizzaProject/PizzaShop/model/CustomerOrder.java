@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table
 public class CustomerOrder {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

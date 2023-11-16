@@ -2,6 +2,7 @@ package com.H2PizzaProject.PizzaShop.controller;
 
 import com.H2PizzaProject.PizzaShop.model.Customer;
 import com.H2PizzaProject.PizzaShop.services.CustomerService;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,10 @@ public class CustomerController {
    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/customers")
     public  Iterable<Customer> getAllCustomers(){
-        return customerService.getAllCustomer();
+      return customerService.getAllCustomer();
     }
 
-
     // EndPoint to add a new customer
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addCustomer")
     public String addCustomer(@RequestBody Customer customer){
@@ -36,11 +35,10 @@ public class CustomerController {
        return customerService.updateCustomer(customer);
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @GetMapping("/getCustomer/{id}")
-    public String findCustomer(@PathVariable int id){
-       customerService.findCustomer(id);
-       return "Found";
+    @ResponseStatus(HttpStatus.FOUND)
+    @GetMapping("/customers/{id}")
+    public Customer findCustomer(@PathVariable long id){
+        return   customerService.findCustomer(id);
     }
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/deleteCustomer/{id}")

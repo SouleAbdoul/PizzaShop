@@ -1,5 +1,6 @@
 package com.H2PizzaProject.PizzaShop.services;
 
+import ch.qos.logback.classic.spi.IThrowableProxy;
 import com.H2PizzaProject.PizzaShop.model.Employee;
 import com.H2PizzaProject.PizzaShop.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class EmployeeService {
 
     // Implementation of the findById method for the get method
     public Employee getEmployeeById(int id) {
-        return employeeRepository.findById(id).orElse(null);
+        return employeeRepository.findById(id).orElse(new Employee());
     }
 
 

@@ -5,9 +5,12 @@ import com.H2PizzaProject.PizzaShop.model.Employee;
 import com.H2PizzaProject.PizzaShop.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
+import java.util.Optional;
+
+@CrossOrigin("http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
@@ -43,4 +46,12 @@ public class EmployeeController {
         return employeeService.deleteEmployee(id);
     }
 
+    @GetMapping("/employee/{id}")
+    public Employee getEmployeeById(@PathVariable int id){
+        return employeeService.getEmployeeById(id);
+    }
+   // public ResponseEntity<Employee> getEmployeeById(@PathVariable int id){
+    //    Optional<Employee> employeeData = Optional.ofNullable(employeeService.getEmployeeById(id));
+     //   return employeeData.map(employee -> new ResponseEntity<>(employee, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    //}
 }

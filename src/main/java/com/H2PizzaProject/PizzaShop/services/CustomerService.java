@@ -30,7 +30,7 @@ public class CustomerService {
 
     // find a customer by id
 
-    public Customer findCustomer(int id){
+    public Customer findCustomer(long id){
         return  customerRepository.findById(id).orElse(null);
     }
 
@@ -54,7 +54,7 @@ public class CustomerService {
         return oldCustomer;
     }
 
-    public String deleteCustomer(int id){
+    public String deleteCustomer(long id){
         customerRepository.deleteById(id);
         return "Customer deleted";
     }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table
 public class OrderDetail {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)

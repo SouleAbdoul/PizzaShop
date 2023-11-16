@@ -5,30 +5,34 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table
 public class Customer {
 
         @Id
-        @Column(name="phone_number",columnDefinition = "VARCHAR(255)")
-        private int phone_number;
+        @Column(name="phone_number")
+        private Long phone_number;
+
         private String name;
         private String street_address;
-         @Column(unique = true)
         private String zip_code;
 
         public Customer(){}
 
-        public Customer(int phone_number, String name, String street_address, String zip_code) {
+        public Customer(Long phone_number, String name, String street_address, String zip_code) {
+
             this.phone_number = phone_number;
             this.name = name;
             this.street_address = street_address;
             this.zip_code = zip_code;
         }
 
-        public int getPhone_number() {
+        public Long getPhone_number() {
+
             return phone_number;
         }
 
-        public void setPhone_number(int phone_number) {
+        public void setPhone_number(Long phone_number) {
+
             this.phone_number = phone_number;
         }
 
