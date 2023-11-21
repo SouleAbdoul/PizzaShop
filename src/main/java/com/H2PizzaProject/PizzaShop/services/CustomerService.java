@@ -45,8 +45,8 @@ public class CustomerService {
              oldCustomer = optionalCustomer.get();
              oldCustomer.setPhone_number(customer.getPhone_number());
              oldCustomer.setName(customer.getName());
-             oldCustomer.setStreetAddress(customer.getStreetAddress());
-             oldCustomer.setZipCode(customer.getZipCode());
+             oldCustomer.setStreet_address(customer.getStreet_address());
+             oldCustomer.setZip_code(customer.getZip_code());
              customerRepository.save(oldCustomer);
          }else{
              return new Customer();

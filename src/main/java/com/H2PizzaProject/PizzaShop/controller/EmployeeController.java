@@ -50,8 +50,4 @@ public class EmployeeController {
     public Employee getEmployeeById(@PathVariable int id){
         return employeeService.getEmployeeById(id);
     }
-   // public ResponseEntity<Employee> getEmployeeById(@PathVariable int id){
-    //    Optional<Employee> employeeData = Optional.ofNullable(employeeService.getEmployeeById(id));
-     //   return employeeData.map(employee -> new ResponseEntity<>(employee, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    //}
 }

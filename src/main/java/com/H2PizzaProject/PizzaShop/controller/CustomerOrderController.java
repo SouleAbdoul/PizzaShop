@@ -1,11 +1,19 @@
 package com.H2PizzaProject.PizzaShop.controller;
 
+import com.H2PizzaProject.PizzaShop.model.Customer;
 import com.H2PizzaProject.PizzaShop.model.CustomerOrder;
+import com.H2PizzaProject.PizzaShop.model.Employee;
+import com.H2PizzaProject.PizzaShop.model.OrderDetail;
 import com.H2PizzaProject.PizzaShop.services.CustomerOrderService;
+import com.H2PizzaProject.PizzaShop.services.CustomerService;
+import com.H2PizzaProject.PizzaShop.services.EmployeeService;
+import com.H2PizzaProject.PizzaShop.services.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -13,6 +21,14 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerOrderController {
     @Autowired
     CustomerOrderService customerOrderService;
+    @Autowired
+    EmployeeService employeeService;
+
+    @Autowired
+    CustomerService customerService;
+
+    @Autowired
+    OrderDetailService orderDetailService;
 
     // EndPoint to get all employees
     // added other endpoints
@@ -21,10 +37,10 @@ public class CustomerOrderController {
     public Iterable<CustomerOrder> getAllCustomerOrder() {
         return customerOrderService.getAllCustomerOrder();
     }
-
     // EndPoint to add a new employee
+
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/addCustomerOrder")
+    @PostMapping("/addNewOrder")
     public CustomerOrder addEmployee(@RequestBody CustomerOrder customerOrder){
         return customerOrderService.createCustomerOrder(customerOrder);
     }

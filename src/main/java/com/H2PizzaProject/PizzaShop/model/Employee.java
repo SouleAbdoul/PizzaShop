@@ -1,16 +1,26 @@
 package com.H2PizzaProject.PizzaShop.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 @Table
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employee_id;
     private String name;
     private String employee_status;
+
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee")
+    private Set<CustomerOrder> myOrders = new HashSet<>();
     private String employee_role;
     public Employee(){}
 
@@ -58,6 +68,9 @@ public class Employee {
     public void setEmployee_role(String employee_role) {
         this.employee_role = employee_role;
     }
+    public void setMyOrders(Set<CustomerOrder> myOrders) {
+        this.myOrders = myOrders;
+    }
 
     @Override
     public String toString() {
@@ -68,3 +81,6 @@ public class Employee {
                 '}';
     }
 }
+
+// We need to create a set of orders
+// we need add @oneToMany(mappedBy ="employee")

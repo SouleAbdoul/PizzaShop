@@ -1,7 +1,11 @@
 package com.H2PizzaProject.PizzaShop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -9,17 +13,23 @@ import lombok.Data;
 public class Customer {
 
         @Id
-        @Column(name="phone_number")
+        @Column(name="phone_number",columnDefinition = "LONG")
         private Long phone_number;
 
         private String name;
         private String street_address;
         private String zip_code;
 
+
+
+    // for the one-to-many relationships
+        @JsonIgnore
+        @OneToMany(mappedBy = "customer")
+        private Set<CustomerOrder>  myOrders = new HashSet<>();
+
         public Customer(){}
 
         public Customer(Long phone_number, String name, String street_address, String zip_code) {
-
             this.phone_number = phone_number;
             this.name = name;
             this.street_address = street_address;
@@ -44,22 +54,24 @@ public class Customer {
             this.name = name;
         }
 
-        public String getStreetAddress() {
+        public String getStreet_address() {
             return street_address;
         }
 
-        public void setStreetAddress(String street_address) {
+        public void setStreet_address(String street_address) {
             this.street_address = street_address;
         }
 
-        public String getZipCode() {
+        public String getZip_code() {
             return zip_code;
         }
 
-        public void setZipCode(String zip_code) {
+        public void setZip_code(String zip_code) {
             this.zip_code = zip_code;
         }
-
+        public Set<CustomerOrder> getMyOrders() {
+         return myOrders;
+        }
         @Override
         public String toString() {
             return "Customer{" +

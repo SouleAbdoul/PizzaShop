@@ -1,12 +1,12 @@
 package com.H2PizzaProject.PizzaShop.model;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.*;
+
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -15,38 +15,58 @@ public class CustomerOrder {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private int order_id;
-        @OneToOne
+        @ManyToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name="phone_number",referencedColumnName = "phone_number",columnDefinition = "LONG")
         private Customer customer;
 
-        @ManyToOne
+        @ManyToOne(cascade = CascadeType.MERGE)
+        @JoinColumn(name="employee_id",referencedColumnName = "employee_id")
         private Employee employee;
-        private boolean order_status;
-
-         public Date getCreatedAt() {
-             return createdAt;
-            }
-
-        public void setCreatedAt(Date createdAt) {
-            this.createdAt = createdAt;
-        }
 
         @Temporal(TemporalType.TIMESTAMP)
-        @Column(name = "created_at", columnDefinition = "TIMESTAMP")
-        private Date createdAt;
-        @OneToMany
-        private List<OrderDetail> details;
+        public Timestamp getTimestamp() {
+        return timestamp;
+    }
+       @JoinColumn(name="detail_id",referencedColumnName = "detail_id")
+        private int orderDetails_id;
+
+        private boolean order_status;
+        @Temporal(TemporalType.TIMESTAMP)
+        private Timestamp timestamp;
+
 
         public CustomerOrder(){}
 
-        public CustomerOrder(int order_id, Customer customer, Employee employee,Date newDate){
-            this.order_id = order_id;
+        public CustomerOrder(Customer customer, Employee employee,Timestamp timestamp,int orderDetails_id){
             this.customer = customer;
             this.employee = employee;
             this.order_status = false;
-            this.createdAt = newDate;
+            this.timestamp = timestamp;
+            this.orderDetails_id = orderDetails_id ;
         }
 
-        public int getOrder_id() {
+
+    public boolean getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(boolean order_status) {
+        this.order_status = order_status;
+    }
+
+    public int getOrderDetails_id() {
+        return orderDetails_id;
+    }
+
+    public void setOrderDetails_id(int orderDetails_id) {
+        this.orderDetails_id = orderDetails_id;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getOrder_id() {
             return order_id;
         }
 
@@ -70,35 +90,15 @@ public class CustomerOrder {
             this.employee = employee;
         }
 
-        public List<OrderDetail> getDetails() {
-            return details;
-        }
-
-        public void setDetails(List<OrderDetail> details) {
-            this.details = details;
-        }
-
-        public boolean isComplete() {
-            return this.order_status;
-        }
-
-        public void setComplete(boolean order_status) {
-            this.order_status = order_status;
-        }
-
-
-
-        @Override
-        public String toString() {
-            return "CustomerOrder{" +
-                    "order_id=" + order_id +
-                    ", customer='" + customer.getName() + '\'' +
-                    ", employee_id='" + employee.getEmployee_id() + '\'' +
-                    ", order_status=" + order_status +
-                    ", date=" + //date +
-                    ", time=" + //time +
-                    ", details=" + details +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "CustomerOrder{" +
+                "order_id=" + order_id +
+                ", customer=" + customer +
+                ", employee=" + employee +
+                ", orderDetail_id=" + orderDetails_id +
+                ", order_status=" + order_status +
+                ", timestamp=" + timestamp +
+                '}';
     }
-
+}

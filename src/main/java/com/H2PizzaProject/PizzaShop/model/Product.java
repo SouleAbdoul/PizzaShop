@@ -9,11 +9,13 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int product_id;
     private  String name;
     private  double price;
     private  String size;
+
+
     Product(){};
 
     public Product(int product_id, String name, double price, String size) {
@@ -54,7 +56,17 @@ public class Product {
     public void setSize(String size) {
         this.size = size;
     }
+    @Override
+    public String toString() {
+        return "Product{" +
+                "product_id=" + product_id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", size='" + size + '\'' +
+                '}';
+    }
 }
+
    // SODA(1, "Soda", 3.25, "2 Liter bottle"),
     //BREADSTICKS(2, "Breadsticks", 2.50, "8 per pack"),
     //PIZZA_SMALLPEPPERONI(3, "Pizza - small Pepperoni", 7.35, "8 inch"),
