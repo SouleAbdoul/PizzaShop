@@ -13,19 +13,22 @@ public class OrderDetail {
     private int detail_id;
     private double price_charged;
     private int quantity;
-   private List<Integer> product_ids;
-    @ManyToOne
+    private int product_id;
+    //@ManyToOne
     @JoinColumn(name = "order_id")
-    private CustomerOrder customerOrder;
+    private int Order_id;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(int detail_id, double price_charged, int quantity, List<Integer> product_ids) {
+    public OrderDetail(int detail_id, double price_charged, int product_id,int quantity,int order_id) {
         this.detail_id = detail_id;
         this.price_charged = price_charged;
         this.quantity = quantity;
-        this.product_ids = product_ids;
+        this.product_id = product_id;
+        this.Order_id = order_id;
+//        this.customerOrder = customerOrder;
+
     }
 
     public int getDetail_id() {
@@ -36,11 +39,11 @@ public class OrderDetail {
         this.detail_id = detail_id;
     }
 
-    public double getPriceCharged() {
+    public double getPrice_charged() {
         return price_charged;
     }
 
-    public void setPriceCharged(double price_charged) {
+    public void setPrice_charged(double price_charged) {
         this.price_charged = price_charged;
     }
 
@@ -52,12 +55,20 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public List<Integer> getProduct_ids() {
-        return this.product_ids;
+    public int getProduct_id() {
+        return this.product_id;
     }
 
-    public void setProduct_ids(List<Integer> product_ids) {
-        this.product_ids = product_ids;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
+    }
+
+    public int getOrder_id() {
+        return this.Order_id;
+    }
+
+    public void setOrder_id(int Order_id) {
+        this.Order_id = Order_id;
     }
 
     @Override
@@ -66,7 +77,7 @@ public class OrderDetail {
                 "detail_id=" + detail_id +
                 ", priceCharged=" + price_charged +
                 ", quantity=" + quantity +
-                ", product_ids=" + product_ids +
+                ", product_id=" + product_id +
                 '}';
     }
 }

@@ -18,4 +18,10 @@ public class ProductController {
     public Iterable<Product> getAll() {
          return productService.getAllProduct();
     }
+
+    @GetMapping("/products/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public Product getProductByid(@PathVariable int id){
+        return productService.getProductByid(id);
+    }
 }

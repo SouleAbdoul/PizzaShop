@@ -27,8 +27,10 @@ public class CustomerOrder {
         public Timestamp getTimestamp() {
         return timestamp;
     }
-       @JoinColumn(name="detail_id",referencedColumnName = "detail_id")
-        private int orderDetails_id;
+
+        //@ManyToOne(cascade = CascadeType.MERGE)
+        //@JoinColumn(name="detail_id",referencedColumnName = "detail_id")
+        //private OrderDetail orderDetails;
 
         private boolean order_status;
         @Temporal(TemporalType.TIMESTAMP)
@@ -37,12 +39,12 @@ public class CustomerOrder {
 
         public CustomerOrder(){}
 
-        public CustomerOrder(Customer customer, Employee employee,Timestamp timestamp,int orderDetails_id){
+        public CustomerOrder(Customer customer, Employee employee,Timestamp timestamp,OrderDetail orderDetails){
             this.customer = customer;
             this.employee = employee;
             this.order_status = false;
             this.timestamp = timestamp;
-            this.orderDetails_id = orderDetails_id ;
+            //this.orderDetails = orderDetails ;
         }
 
 
@@ -54,13 +56,13 @@ public class CustomerOrder {
         this.order_status = order_status;
     }
 
-    public int getOrderDetails_id() {
-        return orderDetails_id;
-    }
+    //public OrderDetail getOrderDetails_id() {
+     //   return orderDetails;
+    //}
 
-    public void setOrderDetails_id(int orderDetails_id) {
-        this.orderDetails_id = orderDetails_id;
-    }
+    //public void setOrderDetails_id(OrderDetail orderDetails) {
+     //   this.orderDetails = orderDetails;
+    //}
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
@@ -96,7 +98,6 @@ public class CustomerOrder {
                 "order_id=" + order_id +
                 ", customer=" + customer +
                 ", employee=" + employee +
-                ", orderDetail_id=" + orderDetails_id +
                 ", order_status=" + order_status +
                 ", timestamp=" + timestamp +
                 '}';
