@@ -1,5 +1,6 @@
 package com.H2PizzaProject.PizzaShop.model;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import jakarta.persistence.Temporal;
@@ -7,6 +8,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Data
@@ -22,53 +24,38 @@ public class CustomerOrder {
         @ManyToOne(cascade = CascadeType.MERGE)
         @JoinColumn(name="employee_id",referencedColumnName = "employee_id")
         private Employee employee;
-
-        @Temporal(TemporalType.TIMESTAMP)
-        public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-        //@ManyToOne(cascade = CascadeType.MERGE)
-        //@JoinColumn(name="detail_id",referencedColumnName = "detail_id")
-        //private OrderDetail orderDetails;
+        @CreationTimestamp
+        private LocalDateTime createdAt;
 
         private boolean order_status;
-        @Temporal(TemporalType.TIMESTAMP)
-        private Timestamp timestamp;
-
 
         public CustomerOrder(){}
 
-        public CustomerOrder(Customer customer, Employee employee,Timestamp timestamp,OrderDetail orderDetails){
+        public CustomerOrder(Customer customer, Employee employee){
             this.customer = customer;
             this.employee = employee;
             this.order_status = false;
-            this.timestamp = timestamp;
-            //this.orderDetails = orderDetails ;
         }
 
 
-    public boolean getOrder_status() {
+        public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+        }
+
+        public boolean getOrder_status() {
         return order_status;
     }
 
-    public void setOrder_status(boolean order_status) {
+        public void setOrder_status(boolean order_status) {
         this.order_status = order_status;
     }
 
-    //public OrderDetail getOrderDetails_id() {
-     //   return orderDetails;
+
+        //public void setTimestamp(Timestamp timestamp) {
+        //this.timestamp = timestamp;
     //}
 
-    //public void setOrderDetails_id(OrderDetail orderDetails) {
-     //   this.orderDetails = orderDetails;
-    //}
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public int getOrder_id() {
+        public int getOrder_id() {
             return order_id;
         }
 
@@ -92,14 +79,14 @@ public class CustomerOrder {
             this.employee = employee;
         }
 
-    @Override
-    public String toString() {
-        return "CustomerOrder{" +
+        @Override
+        public String toString() {
+            return "CustomerOrder{" +
                 "order_id=" + order_id +
                 ", customer=" + customer +
                 ", employee=" + employee +
                 ", order_status=" + order_status +
-                ", timestamp=" + timestamp +
+                ", timestamp=" + createdAt +
                 '}';
     }
 }

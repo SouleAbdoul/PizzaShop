@@ -53,8 +53,8 @@ public class CustomerOrderService {
     // find a customer by id
 
     public CustomerOrder findCustomerOrder(int id){
-
         return  customerOrderRepository.findById(id).orElse(null);
+
     }
 
     // update a customer
@@ -67,7 +67,7 @@ public class CustomerOrderService {
         if(optionalCustomer.isPresent()){
             oldCustomer = optionalCustomer.get();
             oldCustomer.setOrder_status(customerOrder.getOrder_status());
-            oldCustomer.setTimestamp(customerOrder.getTimestamp());
+            //oldCustomer.setTimestamp(customerOrder.getTimestamp());
             oldCustomer.setEmployee(customerOrder.getEmployee());
             //oldCustomer.setDetails(customerOrder.getDetails());
             customerOrderRepository.save(oldCustomer);
