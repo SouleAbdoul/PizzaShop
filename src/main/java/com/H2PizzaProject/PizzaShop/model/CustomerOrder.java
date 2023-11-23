@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.cglib.core.Local;
 
 @Entity
 @Data
@@ -36,12 +37,13 @@ public class CustomerOrder {
             this.employee = employee;
             this.order_status = false;
         }
-
-
         public LocalDateTime getCreatedAt() {
         return this.createdAt;
         }
 
+        public void setCreatedAt(LocalDateTime newT){
+            this.createdAt = newT;
+        }
         public boolean getOrder_status() {
         return order_status;
     }
@@ -49,11 +51,6 @@ public class CustomerOrder {
         public void setOrder_status(boolean order_status) {
         this.order_status = order_status;
     }
-
-
-        //public void setTimestamp(Timestamp timestamp) {
-        //this.timestamp = timestamp;
-    //}
 
         public int getOrder_id() {
             return order_id;

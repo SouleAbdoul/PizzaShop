@@ -53,7 +53,12 @@ public class CustomerOrderController {
         return customerOrderService.updateCustomerOrder(customerOrder);
     }
 
-
+    // get Customer Order By id
+    @ResponseStatus(HttpStatus.FOUND)
+    @GetMapping("/customerOrder/{id}")
+    public  CustomerOrder findCustomerOrderByid(@PathVariable int id){
+       return customerOrderService.findCustomerOrder(id);
+    }
 
     // EndPoint to delete employee
     @ResponseStatus(HttpStatus.OK)
