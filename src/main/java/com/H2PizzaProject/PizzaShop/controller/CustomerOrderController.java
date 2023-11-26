@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -67,5 +68,21 @@ public class CustomerOrderController {
         return customerOrderService.deleteCustomerOrder(id);
     }
 
+
+
+    // Here are the special purpose EndPoints.
+    //get order made by a particular employee by using his employee_id as path parameter
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getOrderByEmployeeId/{id}")
+    public List<CustomerOrder> getAllOrderByEmployeeId(@PathVariable int id){
+        return customerOrderService.getOrderByEmployee(id);
+    }
+
+    // get order made by a specific customer by using his phone_number
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getOrderByCustomer/{phone_number}")
+    public List<CustomerOrder> getAllOrderByZipcode(@PathVariable Long phone_number){
+        return customerOrderService.getOrderByCustomer(phone_number);
+    }
 }
 

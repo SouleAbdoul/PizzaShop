@@ -37,6 +37,14 @@ public class CustomerOrderService {
         return (List<CustomerOrder>) customerOrderRepository.findAll();
     }
 
+    public List<CustomerOrder> getOrderByEmployee(int id){
+        return (List<CustomerOrder>) customerOrderRepository.getOrderByEmployeeId(id);
+    }
+    public List<CustomerOrder> getOrderByCustomer(Long phone_number){
+       // System.out.println("Funtion called");
+        return (List<CustomerOrder>) customerOrderRepository.getOrderByCustomer(phone_number);
+    }
+
     // create a new order
     public CustomerOrder createCustomerOrder(CustomerOrder customerOrder){
         Employee employee = employeeRepository.findById(customerOrder.getEmployee().getEmployee_id())

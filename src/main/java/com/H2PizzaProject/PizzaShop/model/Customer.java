@@ -15,12 +15,9 @@ public class Customer {
         @Id
         @Column(name="phone_number",columnDefinition = "LONG")
         private Long phone_number;
-
         private String name;
         private String street_address;
         private String zip_code;
-
-
 
     // for the one-to-many relationships
         @JsonIgnore
