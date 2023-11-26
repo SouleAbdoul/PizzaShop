@@ -81,8 +81,16 @@ public class CustomerOrderController {
     // get order made by a specific customer by using his phone_number
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/getOrderByCustomer/{phone_number}")
-    public List<CustomerOrder> getAllOrderByZipcode(@PathVariable Long phone_number){
-        return customerOrderService.getOrderByCustomer(phone_number);
+    public List<CustomerOrder> getAllOrderByPhoneNumber(@PathVariable Long phone_number){
+        return customerOrderService.getOrderByCustomer(phone_number).isEmpty() ? null: customerOrderService.getOrderByCustomer(phone_number);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getOrderByZipCode/{zipCode}")
+    public List<CustomerOrder> getAllOrderByZipcode(@PathVariable String zipCode){
+        List<CustomerOrder> orders = customerOrderService.getAllCustomerOrder();
+        var newList = orders.stream().filter(order -> customerOrderService.compareZipCode(order,zipCode)).toList();
+        return newList;
     }
 }
 

@@ -85,4 +85,7 @@ public class CustomerOrderService {
         customerOrderRepository.deleteById(id);
         return "Customer deleted";
     }
+    public boolean compareZipCode(CustomerOrder c,String zipCode){
+        return c.getCustomer().getZip_code().equals(zipCode);
+    }
 }
