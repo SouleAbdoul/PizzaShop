@@ -45,7 +45,7 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable int id){
         return employeeService.deleteEmployee(id);
     }
-
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/employee/{id}")
     public Employee getEmployeeById(@PathVariable int id){
         return employeeService.getEmployeeById(id);

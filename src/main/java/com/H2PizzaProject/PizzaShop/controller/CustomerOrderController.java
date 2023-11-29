@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class CustomerOrderController {
     }
 
     // get Customer Order By id
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/customerOrder/{id}")
     public  CustomerOrder findCustomerOrderByid(@PathVariable int id){
        return customerOrderService.findCustomerOrder(id);
@@ -91,6 +92,20 @@ public class CustomerOrderController {
         List<CustomerOrder> orders = customerOrderService.getAllCustomerOrder();
         var newList = orders.stream().filter(order -> customerOrderService.compareZipCode(order,zipCode)).toList();
         return newList;
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getOrderByWeek/{day}")
+    public List<CustomerOrder> getAllOrderByWeek(@PathVariable("day") String Sdate){
+        LocalDateTime date = LocalDateTime.parse(Sdate);
+        List<CustomerOrder>   orders = customerOrderService.getAllCustomerOrder();
+        var newList = orders.stream().filter(order-> compareDate(order.getCreatedAt(),date)).toList();
+        return newList;
+    }
+
+    private boolean compareDate(LocalDateTime createdAt, LocalDateTime date) {
+        return createdAt.isBefore(date.plusDays(1)) || createdAt.isBefore(date.plusDays(2)) || createdAt.isBefore(date.plusDays(3))
+                || createdAt.isBefore(date.plusDays(4)) || createdAt.isBefore(date.plusDays(5)) || createdAt.isBefore(date.plusDays(6))
+                || createdAt.isBefore(date.plusDays(7));
     }
 }
 

@@ -26,7 +26,7 @@ public class PizzaShopApplication {
     @Bean
 	CommandLineRunner commandLineRunner(EmployeeRepository repository, ProductRepository productRepository){
 		return args -> {
-			repository.save(new Employee(null,"admin","true","admin"));
+			repository.save(new Employee(null,"admin","active","admin"));
 			productRepository.save(new Product(1,"Soda", 3.25, "2 Liter bottle"));
 			productRepository.save(new Product(2,"Pizza - small Pepperoni", 7.35, "8 inch"));
 			productRepository.save(new Product(3,"Pizza - medium Pepperoni", 9.35, "12 inch"));

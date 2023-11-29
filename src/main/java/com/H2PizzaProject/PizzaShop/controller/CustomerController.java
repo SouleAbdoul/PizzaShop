@@ -28,14 +28,12 @@ public class CustomerController {
     public String addCustomer(@RequestBody Customer customer){
        return customerService.createCustomer(customer);
     }
-
     @ResponseStatus(HttpStatus.RESET_CONTENT)
     @PutMapping("/updateCustomer")
     public Customer updateCustomer(@RequestBody Customer customer){
        return customerService.updateCustomer(customer);
     }
-
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/customers/{id}")
     public Customer findCustomer(@PathVariable long id){
         return   customerService.findCustomer(id);
